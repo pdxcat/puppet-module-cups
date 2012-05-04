@@ -47,7 +47,8 @@ class cups::client(
   }
 
   package { 'cups_client_package':
-    name   => $cups::params::client_package,
-    ensure => installed
+    provider => $cups::params::provider,
+    name     => $cups::params::client_package,
+    ensure   => installed
   }
 }

@@ -15,6 +15,7 @@ class cups::params {
 
     'Debian': {
       $client_package  = 'cups-client'
+      $provider        = 'apt'
       $config_dir      = '/etc/cups'
       $config_file     = '/etc/cups/client.conf'
       $config_group    = 'root'
@@ -25,7 +26,8 @@ class cups::params {
     }
 
     'Solaris': {
-      $client_package  = 'CSWcupsclient'
+      $client_package  = 'cupsclient'
+      $provider        = 'pkgutil'
       $config_dir      = '/etc/opt/csw/cups'
       $config_file     = '/etc/opt/csw/cups/client.conf'
       $config_group    = 'bin'
