@@ -25,6 +25,18 @@ class cups::params {
       $service_name    = 'cups'
     }
 
+    'RedHat': {
+      $client_package  = 'cups'
+      $provider        = 'yum'
+      $config_dir      = '/etc/cups'
+      $config_file     = '/etc/cups/client.conf'
+      $config_group    = 'lp'
+      $config_owner    = 'root'
+      $cupsbsd_package = undef
+      $server_package  = 'cups'
+      $service_name    = 'cups'
+    }
+
     'Solaris': {
       $client_package  = 'cupsclient'
       $provider        = 'pkgutil'
@@ -36,7 +48,7 @@ class cups::params {
     }
 
     default: {
-      fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian and Solaris")
+      fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian, RedHat and Solaris")
     }
   }
 
