@@ -23,18 +23,18 @@ class cups::server(
     source => $cupsd_conf;
   }
 
-   service { 'cups':
-     name      => $cups::params::service_name,
-     ensure    => running,
-     enable    => true,
-     require   => Package['cups_server_package'],
-     subscribe => File['/etc/cups/cupsd.conf'];
-   }
+  service { 'cups':
+    ensure    => running,
+    name      => $cups::params::service_name,
+    enable    => true,
+    require   => Package['cups_server_package'],
+    subscribe => File['/etc/cups/cupsd.conf'];
+  }
 
-   package { 'cups_server_package':
-     name    => $cups::params::server_package,
-     ensure  => installed,
-   }
+  package { 'cups_server_package':
+    ensure => installed,
+    name   => $cups::params::server_package,
+  }
 
 
 }

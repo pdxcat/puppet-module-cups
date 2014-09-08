@@ -26,15 +26,15 @@ class cups::client(
 
   if ($cups_bsd != undef and $cups::params::cupsbsd_package != undef) {
     package { 'cupsbsd_package':
+      ensure => $cups_bsd,
       name   => $cups::params::cupsbsd_package,
-      ensure => $cups_bsd
     }
   }
 
   file {
     'config_dir':
-      name    => $cups::params::config_dir,
       ensure  => directory,
+      name    => $cups::params::config_dir,
       owner   => $cups::params::config_owner,
       group   => $cups::params::config_group;
     'client.conf':
@@ -42,13 +42,13 @@ class cups::client(
       mode    => '0644',
       owner   => $cups::params::config_owner,
       group   => $cups::params::config_group,
-      content => "ServerName $print_server",
+      content => "ServerName ${print_server}",
       require => File['config_dir'];
   }
 
   package { 'cups_client_package':
+    ensure   => installed,
     provider => $cups::params::provider,
     name     => $cups::params::client_package,
-    ensure   => installed
   }
 }
