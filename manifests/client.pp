@@ -33,6 +33,7 @@ class cups::client(
 
   file {
     'config_dir':
+      mode    => '0755',
       ensure  => directory,
       name    => $cups::params::config_dir,
       owner   => $cups::params::config_owner,
