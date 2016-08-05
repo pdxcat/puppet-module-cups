@@ -11,16 +11,14 @@
 #
 # Sample Usage:
 #
-class cups::server(
-  $cupsd_conf,
-) {
+class cups::server {
 
   include cups::params
 
   file { '/etc/cups/cupsd.conf':
-    mode   => '0644',
-    owner  => 'root',
-    source => $cupsd_conf;
+    contents => hiera('cupsd_conf'),
+    mode     => '0644',
+    owner    => 'root',
   }
 
   service { 'cups':
